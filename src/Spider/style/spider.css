@@ -1,0 +1,15 @@
+.rootDivSpider{
+    width: 90vw;
+    height: 95vh;
+    border-radius: 10px;
+    background: rgb(239,247,110);
+    background: linear-gradient(347deg, rgba(239,247,110,1) 0%, rgba(49,251,39,1) 100%);
+    color: white;
+    position: relative;
+}
+
+.boxShadow {
+    -webkit-box-shadow: -5px -2px 49px -12px rgba(0,0,0,0.62);
+    -moz-box-shadow: -5px -2px 49px -12px rgba(0,0,0,0.62);
+    box-shadow: -5px -2px 49px -12px rgba(0,0,0,0.62);
+}
