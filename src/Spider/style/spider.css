@@ -13,3 +13,13 @@
     -moz-box-shadow: -5px -2px 49px -12px rgba(0,0,0,0.62);
     box-shadow: -5px -2px 49px -12px rgba(0,0,0,0.62);
 }
+
+
+.boxClass {
+    /* width: 8vw;
+    height: 10vw;
+    background-color: aquamarine;
+    border-radius: 5px;
+    position: absolute; */
+    transition: ease-out 500ms;
+}

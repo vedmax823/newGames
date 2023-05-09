@@ -1,6 +1,12 @@
 
-import React from 'react';
+
+import { GCard } from '../Models/GCard';
 // import cardBack from 'images/cardsImgs/spider_red.png'
+
+interface CardBackComponent {
+    card : GCard
+}
+
 
 const CardBackComponent = () => {
     return (

@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import CardComponent from './CardComponent';
 import { GCard } from '../Models/GCard';
 import { FieldLeftTopContext, FieldLeftTopType } from '../MainFieldSpider';
+import '../style/spider.css'
 
 interface MovingCardProps {
     card: GCard,
@@ -15,10 +16,10 @@ interface MovingCardProps {
 const MovingCard = ({ card, coorStart, coorEnd, endOfMoving, indexLine }: MovingCardProps) => {
     const boxRef = useRef<HTMLDivElement>()
     const [coords, setCoords] = useState(coorStart)
-    const delta = 50
-    const tg = (coorEnd.top - coorStart.top) / (coorEnd.left - coorStart.left)
-    const b = coorEnd.top - tg * coorEnd.left
-    const fieldTopLeft = useContext(FieldLeftTopContext)
+    // const delta = 50
+    // const tg = (coorEnd.top - coorStart.top) / (coorEnd.left - coorStart.left)
+    // const b = coorEnd.top - tg * coorEnd.left
+    // const fieldTopLeft = useContext(FieldLeftTopContext)
 
     // useEffect(() => {
     //     if(boxRef.current){
@@ -28,31 +29,46 @@ const MovingCard = ({ card, coorStart, coorEnd, endOfMoving, indexLine }: Moving
     //     }
     // }, [boxRef])
 
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //       const newTop = coords.top + delta
+    //       const newLeft = (newTop - b ) / tg
+
+    //       setCoords(() => {return {top : newTop, left : newLeft}})
+    //     }, 50);
+    //     // console.log(coorEnd)
+    //     // console.log(coords)
+    //     // console.log(coorEnd.top - coords.top, coorEnd.left - coords.left)
+    //     if ((coords.top > coorEnd.top)){
+    //         endOfMoving(card, indexLine)
+    //         //setCoords({top : coorEnd.top + 25, left : coorEnd.left})
+    //         clearInterval(interval)
+    //         // setCoords({top : coorEnd.top, left : coorEnd.left})
+    //     }
+    //     return () => clearInterval(interval);
+    //   }, [coords]);
+
     useEffect(() => {
-        const interval = setInterval(() => {
-          const newTop = coords.top + delta
-          const newLeft = (newTop - b ) / tg
-
-          setCoords(() => {return {top : newTop, left : newLeft}})
-        }, 50);
-        // console.log(coorEnd)
-        // console.log(coords)
-        // console.log(coorEnd.top - coords.top, coorEnd.left - coords.left)
-        if ((coords.top > coorEnd.top)){
-            endOfMoving(card, indexLine)
-            //setCoords({top : coorEnd.top + 25, left : coorEnd.left})
-            clearInterval(interval)
-            // setCoords({top : coorEnd.top, left : coorEnd.left})
+        if (boxRef.current){
+            setCoords(coorEnd)
         }
-        return () => clearInterval(interval);
-      }, [coords]);
+    }, [boxRef])
 
+
+    useEffect(() => {
+        // setSecondBoxHandle()
+        if (boxRef.current) {
+          setTimeout(() => endOfMoving(card, indexLine), 500)
+          
+        }
+      }, [coords])
 
     return (
         
         <Box
             ref={boxRef}
         // style={{transform: `translateX(${coorEnd.left}px) translateY(${coorEnd.top}%)`}}
+            className="boxClass"
             sx={{
                 minWidth: '8vw',
                 height: '11vw',

@@ -69,6 +69,25 @@ const CardsField = ({ gameState, selectedCards, selectCardHandle, handleSetGameS
         }
     }
 
+
+    // const clickOnAdditional = (index: number, coords: FieldLeftTopType) => {
+    //     if (gameState.additional.length - 1 == index) {
+    //         const additionsList = gameState.additional[index]
+    //         console.log(additionsList[0])
+    //         additionsList.forEach(item => {
+    //             const coords = (gameState.lines[index].length == 0) ? gameState.linesCoords[index] : gameState.lines[index][gameState.lines[index].length -1]
+    //             item.setTopLeft(coords.top + 25, coords.left, coords.width, coords.height)
+    //         })
+    //         console.log(additionsList[1])
+    //         // handleAdditionalOpen({ cards: additionsList, coords: coords })
+    //         // const newGameState = gameState.copyGameState(gameState)
+    //         // newGameState.additional.pop()
+    //         // handleSetGameState(newGameState)
+    //     }
+    // }
+
+
+
     const endOfMoving = (card : GCard, index : number) => {
         const newGameState = gameState.copyGameState(gameState)
         card.setOpen()
@@ -120,8 +139,7 @@ const CardsField = ({ gameState, selectedCards, selectCardHandle, handleSetGameS
                                 return <Box
                                     onMouseDown={() => mouseDownHandle(cart, indexLine, index)}
                                     key={index}
-                                    sx={
-                                        {
+                                    sx={{
                                             minWidth: '8vw',
                                             height: '11vw',
                                             color: "black",
@@ -130,7 +148,7 @@ const CardsField = ({ gameState, selectedCards, selectCardHandle, handleSetGameS
                                             top: top,
                                         }}
                                 >
-                                    {cart.isOpen ? <CardComponent card={cart} /> : <CardBackComponent />}
+                                    <CardComponent card={cart} />
                                 </Box>
                             })
                         }

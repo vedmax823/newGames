@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { GCard } from '../Models/GCard';
 import CardBackComponent from './CardBackComponent';
 import { FieldLeftTopContext, FieldLeftTopType } from '../MainFieldSpider';
+import CardComponent from './CardComponent';
 
 interface AdditionalLineProps {
     index: number,
@@ -10,7 +11,7 @@ interface AdditionalLineProps {
     clickOnAdditional : (index : number, coords : FieldLeftTopType) => void;
 }
 
-const AdditionalLine = ({ index, clickOnAdditional }: AdditionalLineProps) => {
+const AdditionalLine = ({ index, clickOnAdditional, line }: AdditionalLineProps) => {
     const [coords, setCoords] = useState({top : 0, left : 0})
     const lineRef = useRef<HTMLDivElement>()
     const fieldTopLeft = useContext(FieldLeftTopContext)
@@ -22,6 +23,8 @@ const AdditionalLine = ({ index, clickOnAdditional }: AdditionalLineProps) => {
         }
     }, [lineRef, fieldTopLeft])
     const left = index * 20
+
+
 
 
     return (
@@ -38,7 +41,9 @@ const AdditionalLine = ({ index, clickOnAdditional }: AdditionalLineProps) => {
                     left: left,
                 }}
         >
-            <CardBackComponent />
+            {
+                line.map((card, index) => <CardComponent key={index} card={card} />)
+            }
         </Box>
     )
 };
