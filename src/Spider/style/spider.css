@@ -21,5 +21,13 @@
     background-color: aquamarine;
     border-radius: 5px;
     position: absolute; */
-    transition: ease-out 500ms;
+    transition: ease-out 300ms;
+}
+
+.mainBoxClass {
+    min-width: '8vw';
+    width: 8vw;
+    height : '11vw';
+    border-radius : 3;
+    position: "absolute";
 }

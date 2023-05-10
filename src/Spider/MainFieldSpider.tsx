@@ -35,6 +35,7 @@ const MainFieldSpider = () => {
 
     const mouseMoveHandle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if (selectedCards) {
+
             setMouseCoords(() => {
                 return { top: e.pageY - fieldLeftTop.top - 50, left: e.pageX - fieldLeftTop.left - 50}
             })

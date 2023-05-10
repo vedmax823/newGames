@@ -18,12 +18,15 @@ type LeftTopType = {
 export class GameState {
     lines: [GCard[]]
     additional: [GCard[]]
-    fullCells: GCard[]
+    fullCells: [GCard[]]
     howMachSuiuts: SuiutsEnum
     linesCoords : LeftTopType[]
+    fullCellsCoords : LeftTopType[]
+
 
     constructor(howMachSuiuts: SuiutsEnum) {
-        this.fullCells = []
+        this.fullCells = [[]]
+        this.fullCellsCoords = []
         const [lines, additional] = this.InitState(howMachSuiuts)
         this.lines = lines
         this.additional = additional
@@ -138,6 +141,8 @@ export class GameState {
         newGamestate.additional = gameState.additional
         newGamestate.fullCells = gameState.fullCells
         newGamestate.linesCoords = gameState.linesCoords
+        newGamestate.fullCellsCoords = gameState.fullCellsCoords
+        
         return newGamestate
     }
 
@@ -181,5 +186,87 @@ export class GameState {
 
     setEmptyCoords(indexLine : number, y : number, x : number, width : number, height : number){
         this.linesCoords[indexLine] = {top : y, left : x, width, height}
+    }
+
+    setSolvedCoords(indexLine : number, y : number, x : number, width : number, height : number){
+        this.fullCellsCoords[indexLine] = {top : y, left : x, width, height}
+    }
+
+    findSolvedCards() {
+        let result = -1
+        this.lines.forEach((line, indexLine) => {
+            if (line.length < 13) return result
+            const smallLine = line.slice(-13)
+            // let flag = true
+            let firstCard = smallLine[12]
+            if (firstCard.value !== 1) return result
+            for (let index = 12; index > 0; index--) {
+                if (smallLine[index].suit !== firstCard.suit) return result
+                if (smallLine[index - 1].value - smallLine[index].value !== 1) return result
+            }
+            result = indexLine
+        })
+        return result
+    }
+
+    findPossibleEmptyTop() {
+        let index : number = this.fullCells.length
+        index = (index == 1) ? (this.fullCells[0].length == 0) ? 0 : 1 : index
+        return this.fullCellsCoords[7 - index].top
+    }
+
+    findPossibleEmptyLeft() {
+        let index : number = this.fullCells.length
+        index = (index == 1) ? (this.fullCells[0].length == 0) ? 0 : 1 : index
+        return this.fullCellsCoords[7 - index].left
+    }
+
+    findBestMOve(card : GCard, indexLine : number){
+        let bestLine = -1
+        let lastCard : GCard
+        let lineLength = 0
+        this.lines.forEach((line, index) => {
+            if (index == indexLine) return
+            if (line.length == 0){
+                if (!lastCard){
+                    bestLine = index
+                }
+                return
+            }
+            if (line[line.length - 1].value - card.value == 1){
+                if (!lastCard){
+                    bestLine = index
+                    lastCard = line[line.length - 1]
+                    if (lastCard.suit == card.suit){
+                        lineLength = this.howLongIsLastLine(line)
+                    }
+                }
+                else if(line[line.length - 1].suit == card.suit){
+                    const newLength = this.howLongIsLastLine(line)
+                    if (newLength > lineLength){
+                        lineLength = newLength
+                        bestLine = index
+                        lastCard = line[line.length - 1]
+                    }
+                }
+            }
+        })
+        return bestLine
+    }
+
+    howLongIsLastLine(line : GCard[]){
+        let length = 1
+        let index = line.length - 1
+        let flag = true
+        while(flag && index >0){
+            if ((line[index].suit !== line[index-1].suit) || (line[index - 1].value - line[index].value !== 1)){
+                flag = false
+            }
+            else{
+                length++
+                index--
+            }
+        }
+        return length
     }
 }
