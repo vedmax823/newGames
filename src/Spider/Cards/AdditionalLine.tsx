@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { GCard } from '../Models/GCard';
-import CardBackComponent from './CardBackComponent';
 import { FieldLeftTopContext, FieldLeftTopType } from '../MainFieldSpider';
 import CardComponent from './CardComponent';
 

@@ -16,7 +16,7 @@ export const MouseCoordsContext = createContext<FieldLeftTopType | undefined>(un
 
 
 const MainFieldSpider = () => {
-    const [gameState, setGameState] = useState(new GameState(1))
+    const [gameState, setGameState] = useState(new GameState(2))
     const [selectedCards, setSelectedCards] = useState<GCard[]>()
     const [mouseCoords, setMouseCoords] = useState<FieldLeftTopType>()
     const [fieldLeftTop, setFieldLeftTop] = useState<FieldLeftTopType>(fieldLeftTopZero)
@@ -35,7 +35,6 @@ const MainFieldSpider = () => {
 
     const mouseMoveHandle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if (selectedCards) {
-
             setMouseCoords(() => {
                 return { top: e.pageY - fieldLeftTop.top - 50, left: e.pageX - fieldLeftTop.left - 50}
             })

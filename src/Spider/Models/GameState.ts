@@ -85,7 +85,7 @@ export class GameState {
                 acc.push(card)
             })
             return acc
-        }, [])
+        }, deck)
         return deck
     }
 

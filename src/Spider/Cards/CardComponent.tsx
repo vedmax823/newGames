@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { GCard } from '../Models/GCard';
 import { Box } from '@mui/material';
 import { FieldLeftTopContext} from '../MainFieldSpider';

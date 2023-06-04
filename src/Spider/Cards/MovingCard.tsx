@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CardComponent from './CardComponent';
 import { GCard } from '../Models/GCard';
 import { FieldLeftTopType } from '../MainFieldSpider';
@@ -12,7 +12,7 @@ interface MovingCardProps {
     indexLine: number
 }
 
-const MovingCard = ({ card, coorStart, coorEnd, indexLine }: MovingCardProps) => {
+const MovingCard = ({ card, coorStart, coorEnd }: MovingCardProps) => {
     const boxRef = useRef<HTMLDivElement>()
     const [coords, setCoords] = useState(coorStart)
 

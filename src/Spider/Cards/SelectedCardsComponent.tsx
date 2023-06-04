@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext} from 'react';
 import { GCard } from '../Models/GCard';
 import CardComponent from './CardComponent';
 import { Box, Grid } from '@mui/material';

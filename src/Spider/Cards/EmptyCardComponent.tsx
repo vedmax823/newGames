@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { FieldLeftTopContext } from '../MainFieldSpider';
 import { Box } from '@mui/material';
 import { GameState } from '../Models/GameState';

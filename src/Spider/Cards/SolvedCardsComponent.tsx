@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React, { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { FieldLeftTopContext } from '../MainFieldSpider';
 import { GameState } from '../Models/GameState';
 import CardComponent from './CardComponent';

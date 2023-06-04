@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GCard } from '../Models/GCard';
 import { Box } from '@mui/material';
 import CardComponent from './CardComponent';
